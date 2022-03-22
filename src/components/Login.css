@@ -1,0 +1,102 @@
+body {
+  background-image: url("../assets/Vector.png");
+  background-repeat: no-repeat;
+  background-position: left 0% top -70%;
+}
+
+.signUpFormContainer {
+  font-family: "Raleway";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+}
+
+.textContainer {
+  text-align: center;
+}
+
+.input {
+  border: 2px solid #de8667;
+  border-radius: 32px;
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+  text-indent: 20px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.title1 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #322d38;
+}
+
+.title2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #de8667;
+}
+
+.emailItem {
+  grid-area: emailItem;
+}
+.firstnameItem {
+  grid-area: firstnameItem;
+}
+.lastnameItem {
+  grid-area: lastnameItem;
+}
+.passwordItem {
+  grid-area: passwordItem;
+}
+.passwordItem2 {
+  grid-area: passwordItem2;
+}
+
+.submitButtonItem {
+  grid-area: submitButtonItem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "emailItem emailItem"
+    "firstnameItem lastnameItem"
+    "passwordItem passwordItem"
+    "passwordItem2 passwordItem2"
+    "submitButtonItem submitButtonItem";
+  grid-column-gap: 20px;
+}
+
+.submitButton {
+  background: linear-gradient(to right, #efb467, #de8667);
+  border: none;
+  border-radius: 32px;
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.containerLinks {
+  display: flex;
+}
+
+.textLeft {
+  flex: 1;
+}
+
+.textRight {
+  flex: 1;
+}
