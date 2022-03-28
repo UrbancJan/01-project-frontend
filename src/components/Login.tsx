@@ -65,10 +65,6 @@ const login = () => {
           </div>
         </div>
       </form>
-      <div className="containerLinks">
-        <p className="textLeft">Already have an account?</p>
-        <p className="textRgiht">Sign in</p>
-      </div>
     </div>
   );
 };
