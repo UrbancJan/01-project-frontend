@@ -4,7 +4,8 @@ import DefaultAvatar from "../assets/DefaultAvatar.png";
 
 const login = () => {
   return (
-    <div className="signUpFormContainer">
+    <div>LOGIN</div>
+    /*<div className="signUpFormContainer">
       <div className="textContainer">
         <h1 className="title1">
           What is your <span className="title2">name?</span>
@@ -65,7 +66,7 @@ const login = () => {
           </div>
         </div>
       </form>
-    </div>
+    </div>*/
   );
 };
 

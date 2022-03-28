@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 3rem;
 }
 
 .navbar ul {
@@ -12,13 +13,7 @@
 
 .navbar ul li {
   display: inline-block;
-  padding: 1rem;
-  padding-right: 4rem;
-}
-
-.logo {
-  padding: 1rem;
-  padding-left: 4rem;
+  padding-left: 2rem;
 }
 
 .navbar .showMobileMenu {
@@ -29,32 +24,93 @@
   border: 2px solid #de8667;
   border-radius: 32px;
   padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #de8667;
+}
+
+.navSignUpBtn {
+  border: 2px solid #de8667;
+  border-radius: 32px;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(257.39deg, #efb467 0%, #de8667 100%);
+}
+
+.navSignUpBtn > * {
+  text-decoration: none;
+  color: white;
+}
+
+.navLoginBtn > * {
+  text-decoration: none;
+  color: #de8667;
+}
+
+.navHomeBtn > * {
+  text-decoration: none;
+  color: black;
 }
 
 @media (max-width: 600px) {
   .navbar {
+    display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .navbar .logo {
+    margin-left: auto;
+    padding-right: 2rem;
   }
 
   .navbar .showMobileMenu {
     display: block;
     position: absolute;
     top: 0.75rem;
-    left: 1rem;
-    width: auto;
-    height: 21px;
+    left: 2rem;
+  }
+
+  .navbar ul {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0rem;
+    display: none;
+    width: 100%;
   }
 
   .navbar ul li {
     display: block;
-    padding: 0.5rem;
+    padding: 0;
+    margin: 0;
+    padding-top: 1rem;
   }
 
-  .navbar ul {
-    width: 100%;
-    display: none;
-    margin-top: 0;
+  .navLoginBtn {
+    text-align: center;
+    border: 2px solid #de8667;
+    border-radius: 32px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #de8667;
+  }
+
+  .navSignUpBtn {
+    text-align: center;
+    border: none;
+    border-radius: 32px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(257.39deg, #efb467 0%, #de8667 100%);
+  }
+
+  .homeLink {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .navHomeBtn > div > svg {
+    align-items: flex-end;
   }
 
   #active {
