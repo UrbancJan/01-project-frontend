@@ -50,12 +50,17 @@
   color: black;
 }
 
+.homeRightArrowMobile {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .navbar {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     margin: 0;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
   }
 
   .navbar .logo {
@@ -109,8 +114,9 @@
     justify-content: space-between;
   }
 
-  .navHomeBtn > div > svg {
+  .homeRightArrowMobile {
     align-items: flex-end;
+    display: block;
   }
 
   #active {

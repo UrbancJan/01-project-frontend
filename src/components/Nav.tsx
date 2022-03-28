@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css";
-import RightArrow from "../assets/rightArrow.png";
 
 const Nav = () => {
   const [showMobile, setMobile] = useState(false);
@@ -82,9 +81,10 @@ const Nav = () => {
       <ul className="desktopMenu" id={showMobile ? "active" : ""}>
         <li>
           <div className="navHomeBtn">
-            <Link to="/home" className="homeLink">
+            <Link to="/" className="homeLink">
               <div>HOME</div>
               <svg
+                className="homeRightArrowMobile"
                 width="9"
                 height="16"
                 viewBox="0 0 9 16"
@@ -101,7 +101,7 @@ const Nav = () => {
         </li>
         <li>
           <div className="navSignUpBtn">
-            <Link to="/login">Sign up</Link>
+            <Link to="/signup">Sign up</Link>
           </div>
         </li>
         <li>
