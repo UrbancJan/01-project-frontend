@@ -1,72 +1,45 @@
 import React from "react";
 import "./Login.css";
-import DefaultAvatar from "../assets/DefaultAvatar.png";
 
 const login = () => {
   return (
-    <div>LOGIN</div>
-    /*<div className="signUpFormContainer">
-      <div className="textContainer">
-        <h1 className="title1">
-          What is your <span className="title2">name?</span>
+    <div className="loginFormContainer">
+      <div className="loginTextContainer">
+        <h1 className="loginTitle1">
+          Welcome <span className="loginTitle2">back!</span>
         </h1>
-        <p>Your name will appear on quotes and your public profile</p>
-        <img src={DefaultAvatar} alt="" />
+        <p>
+          Thank you for coming back. Hope you have a good day and inspire
+          others.
+        </p>
       </div>
 
       <form>
-        <div className="grid-container">
-          <div className="emailItem">
+        <div className="loginGrid-container">
+          <div className="loginEmailItem">
             <label>Email</label>
             <input
               type="email"
               name="email"
               placeholder="example@net.com"
-              className="input"
+              className="loginInput"
             />
           </div>
-          <div className="firstnameItem">
-            <label>First Name</label>
-            <input
-              type="text"
-              name="firstname"
-              placeholder="example@net.com"
-              className="input"
-            />
-          </div>
-          <div className="lastnameItem">
-            <label>Last Name</label>
-            <input
-              type="text"
-              name="lastname"
-              placeholder="example@net.com"
-              className="input"
-            />
-          </div>
-          <div className="passwordItem">
+          <div className="loginPasswordItem">
             <label>Password</label>
             <input
               type="password"
               name="password"
               placeholder="example@net.com"
-              className="input"
+              className="loginInput"
             />
           </div>
-          <div className="passwordItem2">
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="example@net.com"
-              className="input"
-            />
-          </div>
-          <div className="submitButtonItem">
-            <input type="submit" value="Sign Up" className="submitButton" />
+          <div className="loginSubmitButtonItem">
+            <input type="submit" value="Login" className="loginSubmitButton" />
           </div>
         </div>
       </form>
-    </div>*/
+    </div>
   );
 };
 

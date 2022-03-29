@@ -1,6 +1,7 @@
 import React from "react";
 import "./SignUp.css";
 import DefaultAvatar from "../assets/DefaultAvatar.png";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   return (
@@ -65,6 +66,13 @@ const SignUp = () => {
           </div>
         </div>
       </form>
+      <div className="bottomText">
+        <p>Already have an account?</p>
+
+        <Link className="linkTo" to="/login">
+          Sign in
+        </Link>
+      </div>
     </div>
   );
 };
