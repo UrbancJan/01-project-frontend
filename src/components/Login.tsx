@@ -1,14 +1,11 @@
 import React, { SyntheticEvent, useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { isLoggedInContext } from "../Context/IsLoggedInContext";
 import "./Login.css";
 
-const Login = () => {
+const Login = (props: { setIsUserLoggedIn: (status: boolean) => void }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-
-  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(isLoggedInContext);
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -23,7 +20,7 @@ const Login = () => {
       }),
     });
 
-    setIsUserLoggedIn(true);
+    props.setIsUserLoggedIn(true);
     setRedirect(true);
   };
 

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
 
-const Nav = (props: { isUserLoggedIn: boolean }) => {
+const Nav = (props: {
+  isUserLoggedIn: boolean;
+  setIsUserLoggedIn: (status: boolean) => void;
+}) => {
   const [showMobile, setMobile] = useState(false);
 
   function showMobileMenu() {
@@ -13,8 +16,17 @@ const Nav = (props: { isUserLoggedIn: boolean }) => {
     }
   }
 
-  var location = useLocation().pathname;
+  const logout = async () => {
+    const response = await fetch("http://localhost:8000/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+    props.setIsUserLoggedIn(false);
+  };
 
+  var location = useLocation().pathname;
+  //console.log("user status in navbar 2" + props.isUserLoggedIn);
   var menu;
   if (props.isUserLoggedIn === true) {
     menu = (
@@ -36,6 +48,13 @@ const Nav = (props: { isUserLoggedIn: boolean }) => {
                   fill="black"
                 />
               </svg>
+            </Link>
+          </div>
+        </li>
+        <li>
+          <div className="navLogoutBtn">
+            <Link to="/login" onClick={logout}>
+              <div>Logout</div>
             </Link>
           </div>
         </li>
