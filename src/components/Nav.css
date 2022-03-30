@@ -46,6 +46,10 @@
   display: none;
 }
 
+.showNavLink {
+  display: block;
+}
+
 .hideNavLink {
   display: none !important; /*!important uporabimo ker v ".navbar ul li" uporabimo display:inline-bock ter tako ovveridamo ta stil*/
 }
