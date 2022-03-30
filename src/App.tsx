@@ -6,12 +6,11 @@ import Nav from "./components/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
-import { isLoggedInContext } from "./Context/IsLoggedInContext";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  useEffect(() => {
+  /*useEffect(() => {
     (async () => {
       const response = await fetch("http://localhost:8000/isuserloggedin", {
         method: "GET",
@@ -26,17 +25,22 @@ function App() {
       }
     })();
   });
+*/
 
   return (
     <BrowserRouter>
-      <Nav isUserLoggedIn={isUserLoggedIn} />
-      <isLoggedInContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-      </isLoggedInContext.Provider>
+      <Nav
+        isUserLoggedIn={isUserLoggedIn}
+        setIsUserLoggedIn={setIsUserLoggedIn}
+      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
+        />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
     </BrowserRouter>
   );
 }
