@@ -10,7 +10,7 @@ import Home from "./components/Home";
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  /*useEffect(() => {
+  useEffect(() => {
     (async () => {
       const response = await fetch("http://localhost:8000/isuserloggedin", {
         method: "GET",
@@ -25,7 +25,6 @@ function App() {
       }
     })();
   });
-*/
 
   return (
     <BrowserRouter>
