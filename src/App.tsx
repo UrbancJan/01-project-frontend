@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
+import { Test } from "./components/Test";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);

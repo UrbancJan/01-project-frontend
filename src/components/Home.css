@@ -1,0 +1,40 @@
+/*.homeContainer {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+}
+
+.firstGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid red;
+}
+.middleText {
+  width: 100%;
+  text-align: center;
+  padding-top: 3rem;
+}
+*/
+/*
+.quoteContainer {
+  margin-top: 2rem;
+  column-count: 3;
+  column-gap: 20px;
+  border: 1px solid red;
+}
+
+.card {
+  display: inline-block;
+  background-color: lightblue;
+  padding: 20px;
+  margin: 0 0 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .quoteContainer {
+    column-count: 1;
+  }
+}
+*/

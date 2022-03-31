@@ -1,5 +1,9 @@
+.container {
+  position: relative;
+}
+
 .navbar {
-  background-color: white;
+  background-color: transparent;
   color: black;
   display: flex;
   justify-content: space-between;
@@ -39,6 +43,11 @@
 .navHomeBtn > * {
   text-decoration: none;
   color: black;
+  display: block;
+}
+
+/*hide this element when in desktop mode*/
+.navHomeBtnDesktop {
   display: none;
 }
 
@@ -54,6 +63,11 @@
   display: none !important; /*!important uporabimo ker v ".navbar ul li" uporabimo display:inline-bock ter tako ovveridamo ta stil*/
 }
 
+.navAddBtnMobile {
+  /*v dektop načinu ne pokažemu + ikone za mobile pogled*/
+  display: none;
+}
+
 @media (max-width: 600px) {
   .navbar {
     display: flex;
@@ -64,8 +78,9 @@
   }
 
   .navbar .logo {
-    margin-left: auto;
-    padding-right: 2rem;
+    /*margin-left: auto;
+    padding-right: 2rem;*/
+    align-items: center;
   }
 
   .navbar .showMobileMenu {
@@ -121,6 +136,17 @@
   .homeRightArrowMobile {
     align-items: flex-end;
     display: block;
+  }
+
+  .navAddBtnDesktop {
+    display: none !important;
+  }
+
+  .navbar .navAddBtnMobile {
+    display: block;
+    position: absolute;
+    top: 0.75rem;
+    right: 2rem;
   }
 
   #active {

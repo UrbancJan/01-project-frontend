@@ -1,0 +1,48 @@
+.quoteContainer {
+  width: auto;
+  padding: 1rem;
+  column-count: 3;
+  column-gap: 0.5rem;
+  border: 1px solid red;
+}
+
+.card-container {
+  display: inline-block;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0 0 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "vote cardContent"
+    "vote user";
+  align-items: center;
+}
+
+.card-content {
+  grid-area: cardContent;
+}
+
+.card-user {
+  padding-top: 1rem;
+  grid-area: user;
+}
+
+.card-voting {
+  grid-area: vote;
+  text-align: center;
+  padding-right: 1rem;
+}
+
+@media (max-width: 600px) {
+  .quoteContainer {
+    column-count: 1;
+    width: auto;
+  }
+}
