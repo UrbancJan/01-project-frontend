@@ -32,6 +32,29 @@
 body {
   margin: 0;
   font-family: "Raleway";
+  height: 100vh;
+}
+.wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+.main-header-container {
+  grid-area: header;
+}
+
+.main-content-container {
+  grid-area: main;
+}
+
+.main-footer-container {
+  grid-area: footer;
 }
 
 /*--------------------------------*/

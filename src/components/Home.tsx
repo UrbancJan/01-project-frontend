@@ -61,55 +61,6 @@ const Home = () => {
         </Link>
       </div>
     </div>
-    /* <div className="quoteContainer">
-      <div className="card">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum,
-        est consequat eleifend ullamcorper, quam ipsum fermentum risus, sit amet
-        consectetur orci velit ac velit. Quisque a tristique massa. Cras tempus
-        ultrices turpis, non luctus magna lacinia eu. Duis bibendum sapien a
-        purus tempus, sit amet finibus quam ullamcorper. Fusce a pretium mauris,
-        quis consectetur orci velit ac velit. Quisque a tristique massa. Cras
-        tempus ultrices turpis, non luctus magna lacinia eu. Duis bibendum
-        sapien a purus tempus, sit amet finibus
-      </div>
-      <div className="card">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum,
-        est consequat eleifend ullamcorper, quam ipsum fermentum risus, sit amet
-        consectetur orci velit ac velit. Quisque a tristique massa. Cras tempus
-        ultrices turpis, non luctus magna lacinia eu. Duis bibendum sapien a
-        purus tempus, sit amet finibus quam ullamcorper. Fusce a pretium mauris,
-        quis accumsan arcu. Etiam hendrerit, risus ut semper faucibus, neque
-        justo euismod metus, in aliquam velit velit et metus. Ut et nisl et eros
-        cursus vehicula.
-      </div>
-      <div className="card">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum,
-        est consequat eleifend ullamcorper, quam ipsum fermentum risus, sit amet
-        consectetur orci velit ac velit. Quisque a tristique massa. Cras tempus
-        ultrices turpis, non luctus magna lacinia eu. Duis bibendum sapien a
-        purus tempus, sit amet finibus quam ullamcorper. Fusce a pretium mauris,
-        quis accumsan arcu. Etiam hendrerit, risus ut semper faucibus, neque
-        justo euismod metus, in aliquam velit velit et metus. Ut et nisl et eros
-        cursus vehicula. Ut id nisl non lectus feugiat malesuada eget quis
-        justo.
-      </div>
-      <div className="card">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum,
-        est consequat eleifend ullamcorper, quam ipsum fermentum risus, sit amet
-        consectetur orci velit ac velit. Quisque a tristique massa. Cras tempus
-        ultrices
-      </div>
-      <div className="card">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum,
-        est consequat eleifend ullamcorper, quam ipsum fermentum risus, sit amet
-        consectetur orci velit ac velit. Quisque a tristique massa. Cras tempus
-        ultrices turpis, non luctus magna lacinia eu. Duis bibendum sapien a
-        purus tempus, sit amet finibus quam ullamcorper. Fusce a pretium mauris,
-        quis accumsan arcu. Etiam hendrerit, risus ut semper faucibus, neque
-        justo euismod metus, in aliquam velit velit et metus. Ut et nisl et eros
-        cursus vehic
-      </div>
-    </div>*/
   );
 };
 

@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 import { Test } from "./components/Test";
+import Footer from "./components/Footer";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -28,20 +29,29 @@ function App() {
   });
 
   return (
-    <BrowserRouter>
-      <Nav
-        isUserLoggedIn={isUserLoggedIn}
-        setIsUserLoggedIn={setIsUserLoggedIn}
-      />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/login"
-          element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
-        />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="wrapper">
+      <BrowserRouter>
+        <div className="main-header-container">
+          <Nav
+            isUserLoggedIn={isUserLoggedIn}
+            setIsUserLoggedIn={setIsUserLoggedIn}
+          />
+        </div>
+        <div className="main-content-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/login"
+              element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
+            />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
+        </div>
+        <div className="main-footer-container">
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </div>
   );
 }
 
