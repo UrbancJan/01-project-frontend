@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
+import DefaultAvatar from "../assets/DefaultAvatar.png";
 
 const Nav = (props: {
   isUserLoggedIn: boolean;
@@ -34,7 +35,7 @@ const Nav = (props: {
         <li>
           <div className="navHomeBtn">
             <Link to="/" className="homeLink">
-              <div>HOME</div>
+              <div>Home</div>
               <svg
                 className="homeRightArrowMobile"
                 width="9"
@@ -52,29 +53,40 @@ const Nav = (props: {
           </div>
         </li>
         <li>
-          <div>
+          <div className="profileImageNavbar">
             <Link to="/">
-              <div>PROFIL</div>
+              <img
+                src={DefaultAvatar}
+                alt=""
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
             </Link>
           </div>
         </li>
         <li>
           <div>
-            <Link to="/">
+            <Link style={{ textDecoration: "none" }} to="/">
               <div>SETTINGS</div>
             </Link>
           </div>
         </li>
         <li>
           <div className="navLogoutBtn">
-            <Link to="/login" onClick={logout}>
+            <Link
+              style={{ textDecoration: "none" }}
+              to="/login"
+              onClick={logout}
+            >
               <div>Logout</div>
             </Link>
           </div>
         </li>
         <li className={"navAddBtnDesktop"}>
           <div>
-            <Link to="/">
+            <Link style={{ textDecoration: "none" }} to="/">
               <div>+</div>
             </Link>
           </div>

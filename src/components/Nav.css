@@ -60,12 +60,20 @@
 }
 
 .hideNavLink {
-  display: none !important; /*!important uporabimo ker v ".navbar ul li" uporabimo display:inline-bock ter tako ovveridamo ta stil*/
+  display: none !important; /*!important uporabimo ker v ".navbar ul li" uporabimo display:inline-bock ter tako overidamo ta stil*/
 }
 
 .navAddBtnMobile {
   /*v dektop načinu ne pokažemu + ikone za mobile pogled*/
   display: none;
+}
+
+.profileImageNavbar {
+  width: 4rem;
+}
+
+.desktopMenu {
+  align-items: center;
 }
 
 @media (max-width: 600px) {
