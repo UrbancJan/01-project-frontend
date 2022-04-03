@@ -2,6 +2,15 @@
   position: relative;
 }
 
+/*.idkTest {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+  min-height: 300px;
+  max-height: 300px;
+}*/
+
 .navbar {
   background-color: transparent;
   color: black;
@@ -77,6 +86,16 @@
 }
 
 @media (max-width: 600px) {
+  /*.idkTest {
+    position: static;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+    min-height: 300px;
+    max-height: 300px;
+  }
+*/
+
   .navbar {
     display: flex;
     flex-direction: column;

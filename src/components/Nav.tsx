@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
 import DefaultAvatar from "../assets/DefaultAvatar.png";
+import { ReactComponent as TopNavCover } from "../assets/ProfileSvg.svg";
 
 const Nav = (props: {
   isUserLoggedIn: boolean;
@@ -259,6 +260,9 @@ const Nav = (props: {
         {menu}
         {props.isUserLoggedIn ? <div className="navAddBtnMobile">ADD</div> : ""}
       </nav>
+      {/*<div>
+        <TopNavCover className="idkTest" />
+  </div>*/}
     </div>
   );
 };
