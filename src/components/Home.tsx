@@ -4,12 +4,19 @@ import baseurl from "../baseURL/baseurl";
 import Quotes from "./Quotes";
 import QuoteCard from "./QuoteCard";
 import { Link } from "react-router-dom";
+import { BackgroundSvg } from "./BackgroundSvg";
 
-const Home = () => {
+const Home = (props: { isUserLoggedIn: boolean }) => {
   return (
     <div>
+      <BackgroundSvg />
       <div className="homeContainer">
-        <div className="firstGrid">
+        <div
+          className="firstGrid"
+          style={
+            props.isUserLoggedIn ? { display: "none" } : { display: "block" }
+          }
+        >
           <div className="firstGridItemContainer">
             <h1>
               Welcome to <span style={{ color: "#DE8667" }}>Quotastic</span>
@@ -25,21 +32,29 @@ const Home = () => {
             </div>
           </div>
           <div className="blur-grid">
-            <div className="blur-grid-item1">
-              <QuoteCard />
-            </div>
-            <div className="blur-grid-item2">
-              <QuoteCard />
-            </div>
-            <div className="blur-grid-item3">
-              <QuoteCard />
-            </div>
+            <div className="blur-grid-item1">{/*<QuoteCard />*/}</div>
+            <div className="blur-grid-item2">{/*<QuoteCard />*/}</div>
+            <div className="blur-grid-item3">{/*<QuoteCard />*/}</div>
           </div>
         </div>
-        <div className="middleText">
+        <div
+          className="middleText"
+          style={
+            props.isUserLoggedIn ? { display: "none" } : { display: "block" }
+          }
+        >
           Explore the world of
           <span style={{ color: "#DE8667" }}> fantastic quotes</span>
         </div>
+
+        <div className="loggedInMiddleText">
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "#DE8667" }}>Quote of the day</div>
+            <div>Quote of the day is randomly choosen quote.</div>
+          </div>
+          {/*<QuoteCard />*/}
+        </div>
+
         <div className="middleText">
           <div style={{ color: "#DE8667" }}>Most upvoted quotes</div>
           <div>
@@ -48,7 +63,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Quotes />
+      {/*<Quotes />*/}
       <div className="signUpBtnBottom">
         <Link
           to="/signup"

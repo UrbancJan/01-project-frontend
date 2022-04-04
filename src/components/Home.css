@@ -1,14 +1,12 @@
 .homeContainer {
   margin: auto;
   width: 80%;
-  border: 3px solid green;
 }
 
 .firstGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "item1 item2";
-  border: 1px solid red;
 }
 
 .firstGridItemContainer {
@@ -21,11 +19,15 @@
   padding-top: 3rem;
 }
 
+.loggedInMiddleText {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .blur-grid {
   display: grid;
   width: 100%;
   margin: 0 auto;
-  border: 1px solid red;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   box-sizing: border-box;

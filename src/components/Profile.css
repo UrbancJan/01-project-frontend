@@ -7,28 +7,29 @@
   max-height: 300px;
 }
 
-.testTest {
-  width: 50%;
+.profileMainInfoContainer {
+  width: 200px;
   margin: 0 auto;
-  padding-top: 7rem;
+  padding-top: 4rem;
   text-align: center;
 }
 
-.testKarma {
+.profileKarma {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
   background-color: white;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 .userProfileQuoteCard {
   padding-top: 2rem;
-  width: 60%;
+  width: 30%;
   margin: 0 auto;
 }
 
 @media (max-width: 600px) {
-  .testTest {
+  .profileMainInfoContainer {
     width: 50%;
     margin: 0 auto;
     padding-top: 13rem;
@@ -42,7 +43,7 @@
     transform: translateX(-50%);
   }
 
-  .test {
+  .profileContainer {
     position: relative;
   }
 }

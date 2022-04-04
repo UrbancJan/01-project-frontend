@@ -1,0 +1,11 @@
+.topSvg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -5;
+}
+
+.middleSvg {
+  position: absolute;
+  z-index: -5;
+}

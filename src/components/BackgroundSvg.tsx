@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "./Test.css";
-
-export const Test = () => {
+import React from "react";
+import "./BackgroundSvg.css";
+export const BackgroundSvg = () => {
   return (
-    <div className="testWrapper">
+    <div>
       <svg
         height="658"
         width="505"
-        className="testTopSvg"
+        className="topSvg"
         viewBox="0 200 658 505"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +33,7 @@ export const Test = () => {
       </svg>
 
       <svg
-        className="testMiddleSvg"
+        className="middleSvg"
         width="96"
         height="449"
         viewBox="0 0 145 674"

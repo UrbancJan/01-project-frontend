@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
 import DefaultAvatar from "../assets/DefaultAvatar.png";
 import { ReactComponent as TopNavCover } from "../assets/ProfileSvg.svg";
+import AddQuote from "./AddQuote";
 
 const Nav = (props: {
   isUserLoggedIn: boolean;
@@ -54,30 +55,26 @@ const Nav = (props: {
           </div>
         </li>
         <li>
-          <div className="profileImageNavbar">
-            <Link to="/">
-              <img
-                src={DefaultAvatar}
-                alt=""
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                }}
-              />
+          <div>
+            <Link style={{ textDecoration: "none", color: "white" }} to="/me">
+              <div>Profile</div>
             </Link>
           </div>
         </li>
         <li>
           <div>
-            <Link style={{ textDecoration: "none" }} to="/">
-              <div>SETTINGS</div>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="/me/update-password"
+            >
+              <div>Settings</div>
             </Link>
           </div>
         </li>
         <li>
           <div className="navLogoutBtn">
             <Link
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "white" }}
               to="/login"
               onClick={logout}
             >
@@ -87,7 +84,10 @@ const Nav = (props: {
         </li>
         <li className={"navAddBtnDesktop"}>
           <div>
-            <Link style={{ textDecoration: "none" }} to="/">
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="/myquote"
+            >
               <div>+</div>
             </Link>
           </div>
@@ -260,7 +260,8 @@ const Nav = (props: {
         {menu}
         {props.isUserLoggedIn ? <div className="navAddBtnMobile">ADD</div> : ""}
       </nav>
-      {/*<div>
+      {/*<AddQuote />
+      <div>
         <TopNavCover className="idkTest" />
   </div>*/}
     </div>

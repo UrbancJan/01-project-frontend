@@ -2,20 +2,14 @@ import React from "react";
 import User from "./interface/user";
 import "./QuoteCard.css";
 
-//const QuoteCard = (props: { userQuote: User }) => {
-const QuoteCard = () => {
+const QuoteCard = (props: { userCard: User }) => {
   return (
-    //<div className="card">{props.userQuote.quote.content}</div>;
     <div className="card-container">
       <div className="card-grid-container">
-        <div className="card-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-          malesuada nibh ligula. Nunc at mauris sed dui condimentum dapibus quis
-          sit amet dui. Curabitur pharetra ex a tellus vestibulum lobortis.
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-          posuere cubilia curae cubilia rd
+        <div className="card-content">{props.userCard.quote.content}</div>
+        <div className="card-user">
+          {props.userCard.name} {props.userCard.lastname}
         </div>
-        <div className="card-user">John Doe</div>
         <div className="card-voting">
           <div>
             <svg
@@ -34,7 +28,7 @@ const QuoteCard = () => {
               />
             </svg>
           </div>
-          <div>250</div>
+          <div>{props.userCard.quote.votes}</div>
           <div>
             <svg
               width="13"

@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import AddQuote from "./components/AddQuote";
 import Settings from "./components/Settings";
 import Profile from "./components/Profile";
+import { BackgroundSvg } from "./components/BackgroundSvg";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -42,7 +43,10 @@ function App() {
         </div>
         <div className="main-content-container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<Home isUserLoggedIn={isUserLoggedIn} />}
+            />
             <Route
               path="/login"
               element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}

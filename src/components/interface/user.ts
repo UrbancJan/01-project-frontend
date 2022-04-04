@@ -4,7 +4,7 @@ interface User {
   id: number;
   email: string;
   name: string;
-  lastnae: string;
+  lastname: string;
   password: string;
   quote_id: number;
   quote: Quote;
