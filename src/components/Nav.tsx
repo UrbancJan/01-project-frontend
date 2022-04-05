@@ -4,12 +4,15 @@ import "./Nav.css";
 import DefaultAvatar from "../assets/DefaultAvatar.png";
 import { ReactComponent as TopNavCover } from "../assets/ProfileSvg.svg";
 import AddQuote from "./AddQuote";
+import { useModal } from "./contexts/ModalContext";
 
 const Nav = (props: {
   isUserLoggedIn: boolean;
   setIsUserLoggedIn: (status: boolean) => void;
 }) => {
   const [showMobile, setMobile] = useState(false);
+  //const [showAddQuote, setShowAddQuote] = useState(false);
+  const { addQuote, setAddQuote } = useModal();
 
   function showMobileMenu() {
     if (showMobile == false) {
@@ -27,6 +30,14 @@ const Nav = (props: {
     });
     props.setIsUserLoggedIn(false);
   };
+
+  function showAddQuote() {
+    if (addQuote == false) {
+      setAddQuote(true);
+    } else {
+      setAddQuote(false);
+    }
+  }
 
   var location = useLocation().pathname;
 
@@ -84,12 +95,17 @@ const Nav = (props: {
         </li>
         <li className={"navAddBtnDesktop"}>
           <div>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/myquote"
+            <button
+              style={{
+                textDecoration: "none",
+                color: "white",
+                background: "none",
+                border: "none",
+              }}
+              onClick={showAddQuote}
             >
               <div>+</div>
-            </Link>
+            </button>
           </div>
         </li>
       </ul>
@@ -260,10 +276,11 @@ const Nav = (props: {
         {menu}
         {props.isUserLoggedIn ? <div className="navAddBtnMobile">ADD</div> : ""}
       </nav>
-      {/*<AddQuote />
-      <div>
-        <TopNavCover className="idkTest" />
-  </div>*/}
+      {/*<div className="addQuoteModal" onClick={showAddQuote}>
+        <AddQuote />
+      </div>
+      <div className="darkBackgroundModal"></div>
+      */}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-/*
 export default axios.create({
   baseURL: "http://localhost:8000",
   headers: {
@@ -9,20 +8,7 @@ export default axios.create({
   withCredentials: true,
 });
 
-axios.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response.status === 401) {
-      console.log("error boi");
-      window.location = "/login";
-    }
-    return error;
-  }
-);
-*/
-
+/*
 const instance = axios.create({
   baseURL: "http://localhost:8000",
   headers: {
@@ -42,3 +28,4 @@ instance.interceptors.response.use(
 );
 
 export default instance;
+*/

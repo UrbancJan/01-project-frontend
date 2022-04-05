@@ -11,7 +11,10 @@ import Footer from "./components/Footer";
 import AddQuote from "./components/AddQuote";
 import Settings from "./components/Settings";
 import Profile from "./components/Profile";
-import { BackgroundSvg } from "./components/BackgroundSvg";
+
+import UserContextProvider from "./components/contexts/UserContext";
+import baseurl from "./baseURL/baseurl";
+import ModalContextProvider from "./components/contexts/ModalContext";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -35,31 +38,33 @@ function App() {
   return (
     <div className="wrapper">
       <BrowserRouter>
-        <div className="main-header-container">
-          <Nav
-            isUserLoggedIn={isUserLoggedIn}
-            setIsUserLoggedIn={setIsUserLoggedIn}
-          />
-        </div>
-        <div className="main-content-container">
-          <Routes>
-            <Route
-              path="/"
-              element={<Home isUserLoggedIn={isUserLoggedIn} />}
+        <ModalContextProvider>
+          <div className="main-header-container">
+            <Nav
+              isUserLoggedIn={isUserLoggedIn}
+              setIsUserLoggedIn={setIsUserLoggedIn}
             />
-            <Route
-              path="/login"
-              element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
-            />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/myquote" element={<AddQuote />} />
-            <Route path="/me/update-password" element={<Settings />} />
-            <Route path="/me" element={<Profile />} />
-          </Routes>
-        </div>
-        <div className="main-footer-container">
-          <Footer />
-        </div>
+          </div>
+          <div className="main-content-container">
+            <Routes>
+              <Route
+                path="/"
+                element={<Home isUserLoggedIn={isUserLoggedIn} />}
+              />
+              <Route
+                path="/login"
+                element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
+              />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/myquote" element={<AddQuote />} />
+              <Route path="/me/update-password" element={<Settings />} />
+              <Route path="/me" element={<Profile />} />
+            </Routes>
+          </div>
+          <div className="main-footer-container">
+            <Footer />
+          </div>
+        </ModalContextProvider>
       </BrowserRouter>
     </div>
   );

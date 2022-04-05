@@ -7,6 +7,7 @@ import Quotes from "./Quotes";
 import baseurl from "../baseURL/baseurl";
 import User from "./interface/user";
 import Quote from "./interface/quote";
+import { useUser } from "./contexts/UserContext";
 
 const Profile = () => {
   const [user, setUser] = useState<User>();
@@ -40,9 +41,6 @@ const Profile = () => {
     getLikedQuotes();
   }, []);
 
-  console.log("yoo");
-  console.log(likedQuotes ? likedQuotes : "nope");
-
   return (
     <>
       <div className="profileContainer">
@@ -67,7 +65,7 @@ const Profile = () => {
           >
             Quote
           </div>
-          {/*user ? <QuoteCard user={user} /> : <div>Loading...</div>*/}
+          {user ? <QuoteCard userCard={user} /> : <div>Loading...</div>}
         </div>
         <div>
           <div style={{ margin: "1rem", fontSize: "24px" }}>Likes</div>

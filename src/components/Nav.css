@@ -2,15 +2,6 @@
   position: relative;
 }
 
-/*.idkTest {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: -2;
-  min-height: 300px;
-  max-height: 300px;
-}*/
-
 .navbar {
   background-color: transparent;
   color: black;
@@ -84,6 +75,15 @@
 
 .desktopMenu {
   align-items: center;
+}
+
+.darkBackgroundModal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 600px) {

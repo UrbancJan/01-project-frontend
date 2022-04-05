@@ -8,8 +8,6 @@ import "./Quotes.css";
 const Quotes = (props: { users: User[] }) => {
   //todo prestav ta use effect na home page ker bos poslau array kot prop v ta array zato da bom imel
   //dostop do arraya v home pagu
-  console.log("quotes");
-  console.log(props.users[0]?.email);
   return (
     <div className="quoteContainer">
       {props.users?.map((userr, index) => (

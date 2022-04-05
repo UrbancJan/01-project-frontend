@@ -5,11 +5,20 @@ import Quotes from "./Quotes";
 import QuoteCard from "./QuoteCard";
 import { Link } from "react-router-dom";
 import { BackgroundSvg } from "./BackgroundSvg";
+import AddQuote from "./AddQuote";
+import { useModal } from "./contexts/ModalContext";
 
 const Home = (props: { isUserLoggedIn: boolean }) => {
+  const { addQuote } = useModal();
   return (
     <div>
       <BackgroundSvg />
+      <div
+        className="addQuoteModall"
+        style={addQuote ? { display: "block" } : { display: "none" }}
+      >
+        <AddQuote />
+      </div>
       <div className="homeContainer">
         <div
           className="firstGrid"
