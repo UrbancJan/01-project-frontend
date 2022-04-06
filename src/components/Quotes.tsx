@@ -6,8 +6,6 @@ import QuoteCard from "./QuoteCard";
 import "./Quotes.css";
 
 const Quotes = (props: { users: User[] }) => {
-  //todo prestav ta use effect na home page ker bos poslau array kot prop v ta array zato da bom imel
-  //dostop do arraya v home pagu
   return (
     <div className="quoteContainer">
       {props.users?.map((userr, index) => (

@@ -7,23 +7,53 @@ import { Link } from "react-router-dom";
 import { BackgroundSvg } from "./BackgroundSvg";
 import AddQuote from "./AddQuote";
 import { useModal } from "./contexts/ModalContext";
+import Settings from "./Settings";
+import User from "./interface/user";
 
 const Home = (props: { isUserLoggedIn: boolean }) => {
-  const { addQuote } = useModal();
+  const [list, setList] = useState<User[]>([]);
+  let blurArray: User[] = [];
+
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        const response = await baseurl.get("/list");
+        if (response) {
+          setList(response.data);
+        }
+      } catch (error: any) {
+        console.log(error.response);
+      }
+    };
+    getList();
+  }, []);
+
+  //pogledamo koliko elementov je v user arrayu in pridobimo prve tri za uporabo v "blur" cards
+  if (list !== null) {
+    if (list.length > 2) {
+      blurArray.push(list[0]);
+      blurArray.push(list[1]);
+      blurArray.push(list[2]);
+    } else if (list.length < 2) {
+      blurArray.push(list[0]);
+      blurArray.push(list[1]);
+      blurArray.push(list[0]);
+    } else {
+      blurArray.push(list[0]);
+      blurArray.push(list[0]);
+      blurArray.push(list[0]);
+    }
+  }
+
+  const { addQuote, addProfile } = useModal();
   return (
     <div>
       <BackgroundSvg />
-      <div
-        className="addQuoteModall"
-        style={addQuote ? { display: "block" } : { display: "none" }}
-      >
-        <AddQuote />
-      </div>
       <div className="homeContainer">
         <div
           className="firstGrid"
           style={
-            props.isUserLoggedIn ? { display: "none" } : { display: "block" }
+            props.isUserLoggedIn ? { display: "none" } : { display: "grid" }
           }
         >
           <div className="firstGridItemContainer">
@@ -41,9 +71,15 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
             </div>
           </div>
           <div className="blur-grid">
-            <div className="blur-grid-item1">{/*<QuoteCard />*/}</div>
-            <div className="blur-grid-item2">{/*<QuoteCard />*/}</div>
-            <div className="blur-grid-item3">{/*<QuoteCard />*/}</div>
+            <div className="blur-grid-item1">
+              {blurArray ? <QuoteCard userCard={blurArray[0]} /> : ""}
+            </div>
+            <div className="blur-grid-item2">
+              {blurArray ? <QuoteCard userCard={blurArray[2]} /> : ""}
+            </div>
+            <div className="blur-grid-item3">
+              {blurArray ? <QuoteCard userCard={blurArray[2]} /> : ""}
+            </div>
           </div>
         </div>
         <div
@@ -72,7 +108,7 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
           </div>
         </div>
       </div>
-      {/*<Quotes />*/}
+      <div>{list ? <Quotes users={list} /> : <div>Loading...</div>}</div>
       <div className="signUpBtnBottom">
         <Link
           to="/signup"

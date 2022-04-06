@@ -5,6 +5,7 @@ import DefaultAvatar from "../assets/DefaultAvatar.png";
 import { ReactComponent as TopNavCover } from "../assets/ProfileSvg.svg";
 import AddQuote from "./AddQuote";
 import { useModal } from "./contexts/ModalContext";
+import Settings from "./Settings";
 
 const Nav = (props: {
   isUserLoggedIn: boolean;
@@ -12,7 +13,7 @@ const Nav = (props: {
 }) => {
   const [showMobile, setMobile] = useState(false);
   //const [showAddQuote, setShowAddQuote] = useState(false);
-  const { addQuote, setAddQuote } = useModal();
+  const { addQuote, setAddQuote, addProfile, setAddProfile } = useModal();
 
   function showMobileMenu() {
     if (showMobile == false) {
@@ -32,10 +33,22 @@ const Nav = (props: {
   };
 
   function showAddQuote() {
-    if (addQuote == false) {
+    if (addQuote == true) {
+      setAddQuote(false);
+      setAddProfile(false);
+    } else {
       setAddQuote(true);
+      setAddProfile(false);
+    }
+  }
+
+  function showSettings() {
+    if (addProfile == true) {
+      setAddQuote(false);
+      setAddProfile(false);
     } else {
       setAddQuote(false);
+      setAddProfile(true);
     }
   }
 
@@ -74,12 +87,17 @@ const Nav = (props: {
         </li>
         <li>
           <div>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/me/update-password"
+            <button
+              style={{
+                textDecoration: "none",
+                color: "white",
+                background: "none",
+                border: "none",
+              }}
+              onClick={showSettings}
             >
               <div>Settings</div>
-            </Link>
+            </button>
           </div>
         </li>
         <li>
@@ -276,11 +294,18 @@ const Nav = (props: {
         {menu}
         {props.isUserLoggedIn ? <div className="navAddBtnMobile">ADD</div> : ""}
       </nav>
-      {/*<div className="addQuoteModal" onClick={showAddQuote}>
+      <div style={addQuote ? { display: "block" } : { display: "none" }}>
         <AddQuote />
       </div>
-      <div className="darkBackgroundModal"></div>
-      */}
+      <div style={addProfile ? { display: "block" } : { display: "none" }}>
+        <Settings />
+      </div>
+      <div
+        style={
+          addQuote || addProfile ? { display: "block" } : { display: "none" }
+        }
+        className="darkBackgroundModal"
+      ></div>
     </div>
   );
 };

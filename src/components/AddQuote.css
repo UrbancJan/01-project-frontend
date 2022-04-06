@@ -12,6 +12,7 @@
   padding: 2rem;
   border-radius: 16px;
   overflow: scroll;
+  z-index: 99;
 
   /*
   background-color: white;

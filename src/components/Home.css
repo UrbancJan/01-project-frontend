@@ -82,10 +82,6 @@
   margin: 2rem auto;
 }
 
-.addQuoteModall {
-  display: none;
-}
-
 @media (max-width: 600px) {
   .firstGrid {
     grid-template-columns: 1fr;

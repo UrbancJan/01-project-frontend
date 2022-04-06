@@ -15,6 +15,7 @@ import Profile from "./components/Profile";
 import UserContextProvider from "./components/contexts/UserContext";
 import baseurl from "./baseURL/baseurl";
 import ModalContextProvider from "./components/contexts/ModalContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -56,9 +57,12 @@ function App() {
                 element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
               />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/myquote" element={<AddQuote />} />
-              <Route path="/me/update-password" element={<Settings />} />
-              <Route path="/me" element={<Profile />} />
+              {/*<Route path="/myquote" element={<AddQuote />} />
+              <Route path="/me/update-password" element={<Settings />} />*/}
+
+              <Route element={<PrivateRoute />}>
+                <Route path="/me" element={<Profile />} />
+              </Route>
             </Routes>
           </div>
           <div className="main-footer-container">
