@@ -9,13 +9,14 @@ import AddQuote from "./AddQuote";
 import { useModal } from "./contexts/ModalContext";
 import Settings from "./Settings";
 import User from "./interface/user";
+import defaultUser from "../components/common/defaultUser.json";
 
 const Home = (props: { isUserLoggedIn: boolean }) => {
   const [list, setList] = useState<User[]>([]);
-  let blurArray: User[] = [];
 
   useEffect(() => {
     const getList = async () => {
+      console.log("supp");
       try {
         const response = await baseurl.get("/list");
         if (response) {
@@ -27,23 +28,6 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
     };
     getList();
   }, []);
-
-  //pogledamo koliko elementov je v user arrayu in pridobimo prve tri za uporabo v "blur" cards
-  if (list !== null) {
-    if (list.length > 2) {
-      blurArray.push(list[0]);
-      blurArray.push(list[1]);
-      blurArray.push(list[2]);
-    } else if (list.length < 2) {
-      blurArray.push(list[0]);
-      blurArray.push(list[1]);
-      blurArray.push(list[0]);
-    } else {
-      blurArray.push(list[0]);
-      blurArray.push(list[0]);
-      blurArray.push(list[0]);
-    }
-  }
 
   const { addQuote, addProfile } = useModal();
   return (
@@ -72,13 +56,13 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
           </div>
           <div className="blur-grid">
             <div className="blur-grid-item1">
-              {blurArray ? <QuoteCard userCard={blurArray[0]} /> : ""}
+              <QuoteCard userCard={defaultUser} />
             </div>
             <div className="blur-grid-item2">
-              {blurArray ? <QuoteCard userCard={blurArray[2]} /> : ""}
+              <QuoteCard userCard={defaultUser} />
             </div>
             <div className="blur-grid-item3">
-              {blurArray ? <QuoteCard userCard={blurArray[2]} /> : ""}
+              <QuoteCard userCard={defaultUser} />
             </div>
           </div>
         </div>
@@ -97,7 +81,6 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
             <div style={{ color: "#DE8667" }}>Quote of the day</div>
             <div>Quote of the day is randomly choosen quote.</div>
           </div>
-          {/*<QuoteCard />*/}
         </div>
 
         <div className="middleText">

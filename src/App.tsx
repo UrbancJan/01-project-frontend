@@ -59,7 +59,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               {/*<Route path="/myquote" element={<AddQuote />} />
               <Route path="/me/update-password" element={<Settings />} />*/}
-
+              <Route path="/test" element={<Test />} />
               <Route element={<PrivateRoute />}>
                 <Route path="/me" element={<Profile />} />
               </Route>

@@ -1,0 +1,13 @@
+{
+  "id": -1,
+  "email": "johndoe@gmail.com",
+  "name": "John",
+  "lastname": "Doe",
+  "password": "top secret",
+  "quote_id": -1,
+  "quote": {
+    "id": -1,
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada nibh ligula. Nunc at mauris sed dui condimentum dapibus quis sit amet dui. Curabitur pharetra ex a tellus vestibulum lobortis. Vestibulum ante.",
+    "votes": 132
+  }
+}
