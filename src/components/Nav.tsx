@@ -198,8 +198,8 @@ const Nav = (props: {
               y2="10.5031"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#EFB467" />
-              <stop offset="1" stop-color="#DE8667" />
+              <stop stopColor="#EFB467" />
+              <stop offset="1" stopColor="#DE8667" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_117_1760"
@@ -209,8 +209,8 @@ const Nav = (props: {
               y2="16.7809"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#EFB467" />
-              <stop offset="1" stop-color="#DE8667" />
+              <stop stopColor="#EFB467" />
+              <stop offset="1" stopColor="#DE8667" />
             </linearGradient>
             <linearGradient
               id="paint2_linear_117_1760"
@@ -220,8 +220,8 @@ const Nav = (props: {
               y2="23.0587"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#EFB467" />
-              <stop offset="1" stop-color="#DE8667" />
+              <stop stopColor="#EFB467" />
+              <stop offset="1" stopColor="#DE8667" />
             </linearGradient>
           </defs>
         </svg>
@@ -234,8 +234,8 @@ const Nav = (props: {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M109.555 0.249977V6.48273H112.031C112.031 7.8586 111.059 9.55621 109.549 10.1262L110.167 11.4653C113.431 10.8156 115.759 8.4071 115.759 4.8556V0.249977H109.555ZM115.136 4.8556C115.136 7.77586 113.379 9.99134 110.515 10.7452V10.7421L110.365 10.4173C111.854 9.55008 112.648 7.82489 112.648 6.4766V5.85762H110.173V0.872027H115.133V4.8556H115.136ZM100.845 0.249977V6.48273H103.33C103.33 7.8586 102.358 9.55621 100.848 10.1262L101.466 11.4653C104.73 10.8156 107.049 8.4071 107.049 4.8556V0.249977H100.845ZM106.426 4.8556C106.426 7.77586 104.672 9.9944 101.817 10.7452L101.667 10.4203C103.153 9.55314 103.95 7.82795 103.95 6.47967V5.85762H101.466V0.872027H106.426V4.8556Z"
               fill="url(#paint0_linear_117_1460)"
             />
@@ -284,8 +284,8 @@ const Nav = (props: {
                 y2="5.85835"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#DE8667" />
-                <stop offset="1" stop-color="#EFB467" />
+                <stop stopColor="#DE8667" />
+                <stop offset="1" stopColor="#EFB467" />
               </linearGradient>
             </defs>
           </svg>

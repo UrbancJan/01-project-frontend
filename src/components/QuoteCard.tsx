@@ -27,9 +27,9 @@ const QuoteCard = (props: {
               <path
                 d="M1.5 6L6.5 1L11.5 6"
                 stroke="#322D38"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -45,9 +45,9 @@ const QuoteCard = (props: {
               <path
                 d="M11.5 1L6.5 6L1.5 0.999999"
                 stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

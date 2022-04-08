@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Login from "./components/Login";
 import Nav from "./components/Nav";
@@ -8,14 +7,10 @@ import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 import { Test } from "./components/Test";
 import Footer from "./components/Footer";
-import AddQuote from "./components/AddQuote";
-import Settings from "./components/Settings";
 import Profile from "./components/Profile";
-
-import UserContextProvider from "./components/contexts/UserContext";
-import baseurl from "./baseURL/baseurl";
 import ModalContextProvider from "./components/contexts/ModalContext";
 import PrivateRoute from "./components/PrivateRoute";
+import QuoteListContextProvider from "./components/contexts/QuoteListsContext";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -30,45 +25,47 @@ function App() {
       const content = await response.json();
       if (content == false) {
         setIsUserLoggedIn(false);
+        console.log("user is NOT logged in");
       } else {
         setIsUserLoggedIn(true);
+        console.log("user is logged in");
       }
     })();
-  }, [isUserLoggedIn]);
+  }, []);
 
   return (
     <div className="wrapper">
       <BrowserRouter>
-        <ModalContextProvider>
-          <div className="main-header-container">
-            <Nav
-              isUserLoggedIn={isUserLoggedIn}
-              setIsUserLoggedIn={setIsUserLoggedIn}
-            />
-          </div>
-          <div className="main-content-container">
-            <Routes>
-              <Route
-                path="/"
-                element={<Home isUserLoggedIn={isUserLoggedIn} />}
+        <QuoteListContextProvider>
+          <ModalContextProvider>
+            <div className="main-header-container">
+              <Nav
+                isUserLoggedIn={isUserLoggedIn}
+                setIsUserLoggedIn={setIsUserLoggedIn}
               />
-              <Route
-                path="/login"
-                element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
-              />
-              <Route path="/signup" element={<SignUp />} />
-              {/*<Route path="/myquote" element={<AddQuote />} />
-              <Route path="/me/update-password" element={<Settings />} />*/}
-              <Route path="/test" element={<Test />} />
-              <Route element={<PrivateRoute />}>
-                <Route path="/me" element={<Profile />} />
-              </Route>
-            </Routes>
-          </div>
-          <div className="main-footer-container">
-            <Footer />
-          </div>
-        </ModalContextProvider>
+            </div>
+            <div className="main-content-container">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Home isUserLoggedIn={isUserLoggedIn} />}
+                />
+                <Route
+                  path="/login"
+                  element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
+                />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/test" element={<Test />} />
+                <Route element={<PrivateRoute />}>
+                  <Route path="/me" element={<Profile />} />
+                </Route>
+              </Routes>
+            </div>
+            <div className="main-footer-container">
+              <Footer />
+            </div>
+          </ModalContextProvider>
+        </QuoteListContextProvider>
       </BrowserRouter>
     </div>
   );

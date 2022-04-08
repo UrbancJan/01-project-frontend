@@ -11,17 +11,38 @@ import Settings from "./Settings";
 import User from "./interface/user";
 import defaultUser from "../components/common/defaultUser.json";
 
+import { useUser } from "./contexts/UserContext";
+import { useQuoteLists } from "./contexts/QuoteListsContext";
+
 const Home = (props: { isUserLoggedIn: boolean }) => {
-  const [list, setList] = useState<User[]>([]);
+  //const [list, setList] = useState<User[]>([]);
   const [randomQuote, setRandomQuote] = useState<User>();
 
+  const { allList, setAllList } = useQuoteLists();
+  const { setUserObj, setQuoteContent } = useUser();
+
   useEffect(() => {
-    console.log("use efect update test");
+    const data = async () => {
+      try {
+        const response = await baseurl.get("/me");
+        if (response) {
+          setUserObj(response.data);
+          setQuoteContent(response.data.quote.content);
+        }
+      } catch (error: any) {
+        console.log(error.response);
+      }
+    };
+    data();
+  }, []);
+
+  useEffect(() => {
     const getList = async () => {
       try {
         const response = await baseurl.get("/list");
         if (response) {
-          setList(response.data);
+          //setList(response.data);
+          setAllList(response.data);
         }
       } catch (error: any) {
         console.log(error.response);
@@ -47,7 +68,8 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
   async function upvote(quoteId: number) {
     try {
       const response = await baseurl.post("/user/" + quoteId + "/upvote");
-      const listItems = list.map((item) =>
+      //const listItems = list.map((item) =>
+      const listItems = allList.map((item) =>
         item.quote_id === quoteId
           ? {
               ...item,
@@ -55,8 +77,16 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
             }
           : item
       );
-      console.log(listItems);
-      setList(listItems);
+      //setList(listItems);
+      setAllList(listItems);
+      //pogledamo še če je id od quota, ki smo ga upvotali enak "quote of the day", da se posodobi tutdi ta vrednost brez da bi refreshali
+      if (randomQuote?.quote_id === quoteId) {
+        const ok: User = {
+          ...randomQuote!,
+          quote: { ...randomQuote.quote, votes: response.data },
+        };
+        setRandomQuote(ok);
+      }
     } catch (error: any) {
       console.log(error);
       console.log(error.response.data.message);
@@ -66,7 +96,8 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
   async function downvote(quoteId: number) {
     try {
       const response = await baseurl.post("/user/" + quoteId + "/downvote");
-      const listItems = list.map((item) =>
+      //const listItems = list.map((item) =>
+      const listItems = allList.map((item) =>
         item.quote_id === quoteId
           ? {
               ...item,
@@ -74,8 +105,16 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
             }
           : item
       );
-      console.log(listItems);
-      setList(listItems);
+      //setList(listItems);
+      setAllList(listItems);
+      //pogledamo še če je id od quota, ki smo ga upvotali enak "quote of the day", da se posodobi tutdi ta vrednost brez da bi refreshali
+      if (randomQuote?.quote_id === quoteId) {
+        const ok: User = {
+          ...randomQuote!,
+          quote: { ...randomQuote.quote, votes: response.data },
+        };
+        setRandomQuote(ok);
+      }
     } catch (error: any) {
       console.log(error);
       console.log(error.response.data.message);
@@ -165,8 +204,8 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
         </div>
       </div>
       <div>
-        {list ? (
-          <Quotes users={list} onUpvote={upvote} onDownvote={downvote} />
+        {allList ? (
+          <Quotes users={allList} onUpvote={upvote} onDownvote={downvote} />
         ) : (
           <div>Loading...</div>
         )}

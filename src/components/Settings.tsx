@@ -3,15 +3,18 @@ import { Navigate } from "react-router-dom";
 import baseurl from "../baseURL/baseurl";
 import { BackgroundSvg } from "./BackgroundSvg";
 import { useModal } from "./contexts/ModalContext";
+import { useUser } from "./contexts/UserContext";
 import User from "./interface/user";
 import "./Settings.css";
 
 const Settings = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [user, setUser] = useState<User>();
+  //const [user, setUser] = useState<User>();
+  const { userObj } = useUser();
 
   const { addProfile, setAddProfile } = useModal();
+
   function showSettings() {
     if (addProfile == false) {
       setAddProfile(true);
@@ -20,7 +23,7 @@ const Settings = () => {
     }
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     const data = async () => {
       try {
         const response = await baseurl.get("/me");
@@ -32,7 +35,7 @@ const Settings = () => {
       }
     };
     data();
-  }, []);
+  }, []);*/
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -71,7 +74,7 @@ const Settings = () => {
                 type="email"
                 name="email"
                 placeholder="example@net.com"
-                value={user?.email}
+                value={userObj?.email}
                 className="input"
                 disabled
               />
@@ -83,7 +86,7 @@ const Settings = () => {
                 name="firstname"
                 placeholder="example@net.com"
                 className="input"
-                value={user?.name}
+                value={userObj?.name}
                 disabled
               />
             </div>
@@ -94,7 +97,7 @@ const Settings = () => {
                 name="lastname"
                 placeholder="example@net.com"
                 className="input"
-                value={user?.lastname}
+                value={userObj?.lastname}
                 disabled
               />
             </div>
@@ -121,11 +124,11 @@ const Settings = () => {
           </div>
           <div className="settingButtonsContainer">
             <input type="submit" value="Submit" className="settingSubmitBtn" />
-            <button className="settingCancelBtn" onClick={showSettings}>
-              Cancel
-            </button>
           </div>
         </form>
+        <button className="settingCancelBtn" onClick={showSettings}>
+          Cancel
+        </button>
       </div>
     </>
   );
