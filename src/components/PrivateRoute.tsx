@@ -30,12 +30,9 @@ const PrivateRoute = () => {
       });
       const json = await response.json();
       setIsUserLoggedIn(json);
-      console.log("result is: " + json);
     };
     fetchData().catch(console.error);
   }, []);
-
-  console.log("user logged in status: " + isUserLoggedIn);
 
   if (isUserLoggedIn === undefined) return null;
   return isUserLoggedIn ? <Outlet /> : <Navigate to="/login" />;

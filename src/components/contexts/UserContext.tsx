@@ -1,7 +1,7 @@
 import React, { useState, createContext, useContext } from "react";
 //https://www.youtube.com/watch?v=UFIUMPLwcdw
 
-interface UserContextType {
+type UserContextType = {
   userId: number;
   setUserId: React.Dispatch<React.SetStateAction<number>>;
   name: string;
@@ -16,7 +16,10 @@ interface UserContextType {
   setContent: React.Dispatch<React.SetStateAction<string>>;
   vote: number;
   setVote: React.Dispatch<React.SetStateAction<number>>;
-}
+
+  test: boolean;
+  setTest: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 const UserContext = createContext<UserContextType>({} as UserContextType);
 
@@ -28,6 +31,8 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [quoteId, setQuoteId] = useState(0);
   const [content, setContent] = useState("");
   const [vote, setVote] = useState(0);
+
+  const [test, setTest] = useState(false);
 
   return (
     <UserContext.Provider
@@ -46,6 +51,9 @@ const UserContextProvider: React.FC = ({ children }) => {
         setContent,
         vote,
         setVote,
+
+        test,
+        setTest,
       }}
     >
       {children}

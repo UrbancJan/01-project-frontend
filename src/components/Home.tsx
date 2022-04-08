@@ -13,10 +13,11 @@ import defaultUser from "../components/common/defaultUser.json";
 
 const Home = (props: { isUserLoggedIn: boolean }) => {
   const [list, setList] = useState<User[]>([]);
+  const [randomQuote, setRandomQuote] = useState<User>();
 
   useEffect(() => {
+    console.log("use efect update test");
     const getList = async () => {
-      console.log("supp");
       try {
         const response = await baseurl.get("/list");
         if (response) {
@@ -29,7 +30,58 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
     getList();
   }, []);
 
-  const { addQuote, addProfile } = useModal();
+  useEffect(() => {
+    const getQuoteOfTheDay = async () => {
+      try {
+        const response = await baseurl.get("/random-quote");
+        if (response) {
+          setRandomQuote(response.data);
+        }
+      } catch (error: any) {
+        console.log(error.response);
+      }
+    };
+    getQuoteOfTheDay();
+  }, []);
+
+  async function upvote(quoteId: number) {
+    try {
+      const response = await baseurl.post("/user/" + quoteId + "/upvote");
+      const listItems = list.map((item) =>
+        item.quote_id === quoteId
+          ? {
+              ...item,
+              quote: { ...item.quote, votes: response.data },
+            }
+          : item
+      );
+      console.log(listItems);
+      setList(listItems);
+    } catch (error: any) {
+      console.log(error);
+      console.log(error.response.data.message);
+    }
+  }
+
+  async function downvote(quoteId: number) {
+    try {
+      const response = await baseurl.post("/user/" + quoteId + "/downvote");
+      const listItems = list.map((item) =>
+        item.quote_id === quoteId
+          ? {
+              ...item,
+              quote: { ...item.quote, votes: response.data },
+            }
+          : item
+      );
+      console.log(listItems);
+      setList(listItems);
+    } catch (error: any) {
+      console.log(error);
+      console.log(error.response.data.message);
+    }
+  }
+
   return (
     <div>
       <BackgroundSvg />
@@ -56,13 +108,25 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
           </div>
           <div className="blur-grid">
             <div className="blur-grid-item1">
-              <QuoteCard userCard={defaultUser} />
+              <QuoteCard
+                userCard={defaultUser}
+                onUpvote={upvote}
+                onDownvote={downvote}
+              />
             </div>
             <div className="blur-grid-item2">
-              <QuoteCard userCard={defaultUser} />
+              <QuoteCard
+                userCard={defaultUser}
+                onUpvote={upvote}
+                onDownvote={downvote}
+              />
             </div>
             <div className="blur-grid-item3">
-              <QuoteCard userCard={defaultUser} />
+              <QuoteCard
+                userCard={defaultUser}
+                onUpvote={upvote}
+                onDownvote={downvote}
+              />
             </div>
           </div>
         </div>
@@ -81,6 +145,15 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
             <div style={{ color: "#DE8667" }}>Quote of the day</div>
             <div>Quote of the day is randomly choosen quote.</div>
           </div>
+          {randomQuote ? (
+            <QuoteCard
+              userCard={randomQuote}
+              onUpvote={upvote}
+              onDownvote={downvote}
+            />
+          ) : (
+            <div>Loading...</div>
+          )}
         </div>
 
         <div className="middleText">
@@ -91,7 +164,13 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
           </div>
         </div>
       </div>
-      <div>{list ? <Quotes users={list} /> : <div>Loading...</div>}</div>
+      <div>
+        {list ? (
+          <Quotes users={list} onUpvote={upvote} onDownvote={downvote} />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
       <div className="signUpBtnBottom">
         <Link
           to="/signup"

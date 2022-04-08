@@ -1,8 +1,13 @@
-import React from "react";
+import React, { SyntheticEvent, useState } from "react";
+import baseurl from "../baseURL/baseurl";
 import User from "./interface/user";
 import "./QuoteCard.css";
 
-const QuoteCard = (props: { userCard: User }) => {
+const QuoteCard = (props: {
+  userCard: User;
+  onUpvote: (quoteId: number) => Promise<void>;
+  onDownvote: (quoteId: number) => Promise<void>;
+}) => {
   return (
     <div className="card-container">
       <div className="card-grid-container">
@@ -11,7 +16,7 @@ const QuoteCard = (props: { userCard: User }) => {
           {props.userCard.name} {props.userCard.lastname}
         </div>
         <div className="card-voting">
-          <div>
+          <div onClick={() => props.onUpvote(props.userCard.quote_id)}>
             <svg
               width="13"
               height="7"
@@ -29,7 +34,7 @@ const QuoteCard = (props: { userCard: User }) => {
             </svg>
           </div>
           <div>{props.userCard.quote.votes}</div>
-          <div>
+          <div onClick={() => props.onDownvote(props.userCard.quote_id)}>
             <svg
               width="13"
               height="7"

@@ -7,7 +7,6 @@ import Quotes from "./Quotes";
 import baseurl from "../baseURL/baseurl";
 import User from "./interface/user";
 import Quote from "./interface/quote";
-import { useUser } from "./contexts/UserContext";
 
 const Profile = () => {
   const [user, setUser] = useState<User>();
@@ -65,11 +64,11 @@ const Profile = () => {
           >
             Quote
           </div>
-          {user ? <QuoteCard userCard={user} /> : <div>Loading...</div>}
+          {/*user ? <QuoteCard userCard={user} /> : <div>Loading...</div>*/}
         </div>
         <div>
           <div style={{ margin: "1rem", fontSize: "24px" }}>Likes</div>
-          {likedQuotes ? <Quotes users={likedQuotes} /> : <div>Loading...</div>}
+          {/*likedQuotes ? <Quotes users={likedQuotes} /> : <div>Loading...</div>*/}
         </div>
       </div>
     </>

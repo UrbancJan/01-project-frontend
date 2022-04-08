@@ -34,7 +34,7 @@ function App() {
         setIsUserLoggedIn(true);
       }
     })();
-  });
+  }, [isUserLoggedIn]);
 
   return (
     <div className="wrapper">

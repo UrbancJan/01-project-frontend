@@ -25,7 +25,6 @@ const Settings = () => {
       try {
         const response = await baseurl.get("/me");
         if (response) {
-          console.log(response.data);
           setUser(response.data);
         }
       } catch (error: any) {
