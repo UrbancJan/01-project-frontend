@@ -1,5 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import baseurl from "../baseURL/baseurl";
 import User from "./interface/user";
 import "./QuoteCard.css";
 
@@ -9,8 +10,8 @@ const QuoteCard = (props: {
   onDownvote: (quoteId: number) => Promise<void>;
 }) => {
   const navigate = useNavigate();
-  function ok(id: number) {
-    navigate(`user/${id}`);
+  function userDetails(id: number) {
+    navigate(`/user/${id}`);
   }
 
   return (
@@ -23,7 +24,7 @@ const QuoteCard = (props: {
               <div className="card-content">{props.userCard.quote.content}</div>
               <div
                 className="card-user"
-                onClick={() => ok(props.userCard.quote_id)}
+                onClick={() => userDetails(props.userCard.quote_id)}
               >
                 {props.userCard.name} {props.userCard.lastname}
               </div>

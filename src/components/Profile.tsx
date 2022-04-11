@@ -16,8 +16,6 @@ const Profile = () => {
   const { setUserObj, setQuoteContent, userObj } = useUser();
   const { setLikedList, likedList } = useQuoteLists();
 
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     const data = async () => {
       try {
@@ -45,20 +43,6 @@ const Profile = () => {
     };
     data();
   }, []);
-
-  /*useEffect(() => {
-    const getLikedQuotes = async () => {
-      try {
-        const response = await baseurl.get("/liked/" + userObj?.id);
-        if (response) {
-          setLikedList(response.data);
-        }
-      } catch (error: any) {
-        console.log(error.response);
-      }
-    };
-    getLikedQuotes();
-  }, []);*/
 
   async function upvote(quoteId: number) {
     try {
