@@ -2,29 +2,82 @@ import React, { SyntheticEvent, useState } from "react";
 import "./SignUp.css";
 import DefaultAvatar from "../assets/DefaultAvatar.png";
 import { Link, Navigate } from "react-router-dom";
+import baseurl from "../baseURL/baseurl";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [redirect, setRedirect] = useState(false);
+
+  const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [lastnameError, setLastnameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const validate = () => {
+    if (email === "") {
+      setEmailError("email can not be empty");
+    }
+    if (name === "") {
+      setNameError("name can not be empty");
+    }
+    if (lastname === "") {
+      setLastnameError("lastname can not be empty");
+    }
+    if (password === "") {
+      setPasswordError("password can not be empty");
+    }
+    if (confirmPassword === "") {
+      setConfirmPasswordError("confirm password can not be empty");
+    }
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("passwords must be the same");
+    }
+    if (
+      emailError ||
+      nameError ||
+      lastnameError ||
+      passwordError ||
+      confirmPasswordError
+    ) {
+      return false;
+    }
+    return true;
+  };
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8000/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        name,
-        lastname,
-        password,
-      }),
-    });
-
-    setRedirect(true);
+    const isValid = validate();
+    if (isValid === true) {
+      try {
+        const response = await baseurl.post(
+          "/signup",
+          JSON.stringify({
+            email,
+            name,
+            lastname,
+            password,
+          })
+        );
+        setRedirect(true);
+      } catch (error: any) {
+        console.log(error);
+        if (!error.response) {
+          setErrorMessage("No server response");
+        } else if (error.response?.status === 400) {
+          setErrorMessage("User already exists");
+        } else {
+          setErrorMessage("SignUp failed");
+        }
+      }
+    } else {
+    }
   };
 
   if (redirect != false) {
@@ -52,6 +105,7 @@ const SignUp = () => {
               className="input"
               onChange={(e) => setEmail(e.target.value)}
             />
+            <div style={{ color: "red" }}>{emailError}</div>
           </div>
           <div className="firstnameItem">
             <label>First Name</label>
@@ -62,6 +116,7 @@ const SignUp = () => {
               className="input"
               onChange={(e) => setName(e.target.value)}
             />
+            <div style={{ color: "red" }}>{nameError}</div>
           </div>
           <div className="lastnameItem">
             <label>Last Name</label>
@@ -72,6 +127,7 @@ const SignUp = () => {
               className="input"
               onChange={(e) => setLastname(e.target.value)}
             />
+            <div style={{ color: "red" }}>{lastnameError}</div>
           </div>
           <div className="passwordItem">
             <label>Password</label>
@@ -82,6 +138,7 @@ const SignUp = () => {
               className="input"
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div style={{ color: "red" }}>{passwordError}</div>
           </div>
           <div className="passwordItem2">
             <label>Confirm Password</label>
@@ -90,11 +147,18 @@ const SignUp = () => {
               name="password"
               placeholder="example@net.com"
               className="input"
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            <div style={{ color: "red" }}>{confirmPasswordError}</div>
           </div>
           <div className="submitButtonItem">
             <input type="submit" value="Sign Up" className="submitButton" />
           </div>
+          {errorMessage && (
+            <p style={{ color: "red" }} className="error">
+              {errorMessage}
+            </p>
+          )}
         </div>
       </form>
       <div className="bottomText">

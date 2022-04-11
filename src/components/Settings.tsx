@@ -4,13 +4,11 @@ import baseurl from "../baseURL/baseurl";
 import { BackgroundSvg } from "./BackgroundSvg";
 import { useModal } from "./contexts/ModalContext";
 import { useUser } from "./contexts/UserContext";
-import User from "./interface/user";
 import "./Settings.css";
 
 const Settings = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  //const [user, setUser] = useState<User>();
   const { userObj } = useUser();
 
   const { addProfile, setAddProfile } = useModal();
@@ -22,20 +20,6 @@ const Settings = () => {
       setAddProfile(false);
     }
   }
-
-  /*useEffect(() => {
-    const data = async () => {
-      try {
-        const response = await baseurl.get("/me");
-        if (response) {
-          setUser(response.data);
-        }
-      } catch (error: any) {
-        console.log(error.response);
-      }
-    };
-    data();
-  }, []);*/
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -57,7 +41,6 @@ const Settings = () => {
   };
   return (
     <>
-      {/*<BackgroundSvg />*/}
       <div className="settingsContainer">
         <div style={{ fontSize: "2rem" }}>
           Profile
@@ -126,7 +109,11 @@ const Settings = () => {
             <input type="submit" value="Submit" className="settingSubmitBtn" />
           </div>
         </form>
-        <button className="settingCancelBtn" onClick={showSettings}>
+        <button
+          style={{ margin: 0, marginTop: "1rem" }}
+          className="settingCancelBtn"
+          onClick={showSettings}
+        >
           Cancel
         </button>
       </div>

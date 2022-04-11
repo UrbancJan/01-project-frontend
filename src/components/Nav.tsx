@@ -80,48 +80,28 @@ const Nav = (props: {
         </li>
         <li>
           <div>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/me">
+            <Link className="profileLink" to="/me">
               <div>Profile</div>
             </Link>
           </div>
         </li>
         <li>
           <div>
-            <button
-              style={{
-                textDecoration: "none",
-                color: "white",
-                background: "none",
-                border: "none",
-              }}
-              onClick={showSettings}
-            >
+            <button className="settingsLink" onClick={showSettings}>
               <div>Settings</div>
             </button>
           </div>
         </li>
         <li>
           <div className="navLogoutBtn">
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/login"
-              onClick={logout}
-            >
+            <Link className="logoutLink" to="/login" onClick={logout}>
               <div>Logout</div>
             </Link>
           </div>
         </li>
         <li className={"navAddBtnDesktop"}>
           <div>
-            <button
-              style={{
-                textDecoration: "none",
-                color: "white",
-                background: "none",
-                border: "none",
-              }}
-              onClick={showAddQuote}
-            >
+            <button className="addLink" onClick={showAddQuote}>
               <div>+</div>
             </button>
           </div>
@@ -292,8 +272,20 @@ const Nav = (props: {
         </Link>
 
         {menu}
-        {props.isUserLoggedIn ? <div className="navAddBtnMobile">ADD</div> : ""}
+
+        {props.isUserLoggedIn ? (
+          <div className="navAddBtnMobile">
+            <div>
+              <button className="addLink" onClick={showAddQuote}>
+                <div>+</div>
+              </button>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </nav>
+
       <div style={addQuote ? { display: "block" } : { display: "none" }}>
         <AddQuote />
       </div>

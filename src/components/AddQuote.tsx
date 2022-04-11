@@ -74,18 +74,23 @@ const AddQuote = () => {
           this window.
         </div>
         <form onSubmit={submit}>
+          <div>{quoteContent.length}/300</div>
           <textarea
             value={quoteContent}
             onChange={(e) => setQuoteContent(e.target.value)}
-            //onChange={(e) => setContent(e.target.value)}
             className="quoteText"
+            maxLength={300}
           ></textarea>
 
           <div className="addQuoteButtonsContainer">
             <input type="submit" value="Submit" className="addQuoteSubmitBtn" />
           </div>
         </form>
-        <button className="addQuoteCancelBtn" onClick={showAddQuote}>
+        <button
+          style={{ margin: 0, marginTop: "1rem" }}
+          className="addQuoteCancelBtn"
+          onClick={showAddQuote}
+        >
           Cancel
         </button>
       </div>

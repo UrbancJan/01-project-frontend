@@ -28,7 +28,7 @@
   margin: 0 auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .profileMainInfoContainer {
     width: 50%;
     margin: 0 auto;

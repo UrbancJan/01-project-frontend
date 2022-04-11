@@ -16,19 +16,7 @@ const Profile = () => {
   const { setUserObj, setQuoteContent, userObj } = useUser();
   const { setLikedList, likedList } = useQuoteLists();
 
-  /*useEffect(() => {
-    const data = async () => {
-      try {
-        const response = await baseurl.get("/me");
-        if (response) {
-          setUser(response.data);
-        }
-      } catch (error: any) {
-        console.log(error.response);
-      }
-    };
-    data();
-  }, []);*/
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const data = async () => {
@@ -37,18 +25,31 @@ const Profile = () => {
         if (response) {
           setUserObj(response.data);
           setQuoteContent(response.data.quote.content);
+          console.log(response.data);
+          //pridobimo še uporabnikove liked quotes
+          try {
+            console.log(userObj);
+            const responseLikes = await baseurl.get(
+              "/liked/" + response.data.id
+            );
+            if (responseLikes) {
+              setLikedList(responseLikes.data);
+            }
+          } catch (error: any) {
+            console.log(error);
+          }
         }
       } catch (error: any) {
-        console.log(error.response);
+        console.log(error);
       }
     };
     data();
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const getLikedQuotes = async () => {
       try {
-        const response = await baseurl.get("/liked");
+        const response = await baseurl.get("/liked/" + userObj?.id);
         if (response) {
           setLikedList(response.data);
         }
@@ -57,7 +58,7 @@ const Profile = () => {
       }
     };
     getLikedQuotes();
-  }, []);
+  }, []);*/
 
   async function upvote(quoteId: number) {
     try {
@@ -108,7 +109,11 @@ const Profile = () => {
           </div>
           <div className="profileKarma">
             <div>Quotastic karma</div>
-            <div>{userObj?.quote.votes}</div>
+            {userObj?.quote?.votes ? (
+              <div>{userObj?.quote?.votes}</div>
+            ) : (
+              <div>0</div>
+            )}
           </div>
         </div>
 
@@ -122,12 +127,17 @@ const Profile = () => {
           >
             Quote
           </div>
+
           {userObj ? (
-            <QuoteCard
-              userCard={userObj}
-              onUpvote={upvote}
-              onDownvote={downvote}
-            />
+            userObj.quote_id !== null ? (
+              <QuoteCard
+                userCard={userObj}
+                onUpvote={upvote}
+                onDownvote={downvote}
+              />
+            ) : (
+              <div>You do not have a quote!</div>
+            )
           ) : (
             <div>Loading...</div>
           )}
@@ -135,7 +145,15 @@ const Profile = () => {
         <div>
           <div style={{ margin: "1rem", fontSize: "24px" }}>Likes</div>
           {likedList ? (
-            <Quotes users={likedList} onUpvote={upvote} onDownvote={downvote} />
+            likedList.length !== 0 ? (
+              <Quotes
+                users={likedList}
+                onUpvote={upvote}
+                onDownvote={downvote}
+              />
+            ) : (
+              <div>You have not liked any quotes yet!</div>
+            )
           ) : (
             <div>Loading...</div>
           )}
