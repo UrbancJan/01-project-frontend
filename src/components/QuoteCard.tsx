@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import baseurl from "../baseURL/baseurl";
+import { useVoteArrowColor } from "./contexts/VoteArrowColorContext";
 import User from "./interface/user";
 import "./QuoteCard.css";
 
@@ -10,6 +11,7 @@ const QuoteCard = (props: {
   onDownvote: (quoteId: number) => Promise<void>;
 }) => {
   const navigate = useNavigate();
+  const { upvoteArrowColor, downvoteArrowColor } = useVoteArrowColor();
   function userDetails(id: number) {
     navigate(`/user/${id}`);
   }
@@ -39,7 +41,8 @@ const QuoteCard = (props: {
                   >
                     <path
                       d="M1.5 6L6.5 1L11.5 6"
-                      stroke="#322D38"
+                      //stroke="#322D38"
+                      stroke={upvoteArrowColor}
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -57,7 +60,8 @@ const QuoteCard = (props: {
                   >
                     <path
                       d="M11.5 1L6.5 6L1.5 0.999999"
-                      stroke="black"
+                      //stroke="black"
+                      stroke={downvoteArrowColor}
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"

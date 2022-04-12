@@ -11,7 +11,6 @@ import { ReactComponent as TopNavCover } from "../assets/ProfileSvg.svg";
 const UserDetails = () => {
   const { id } = useParams();
   const { setUserObj, setQuoteContent, userObj } = useUser();
-  //const { setLikedList, likedList } = useQuoteLists();
   const [likedList, setLikedList] = useState<User[]>([]);
 
   useEffect(() => {

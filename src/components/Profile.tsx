@@ -49,15 +49,31 @@ const Profile = () => {
       const response = await baseurl.post("/user/" + quoteId + "/upvote");
       //pogledamo še če je id od quota, ki smo ga upvotali enak user quovtu, da se posodobi tudi ta vrednost brez da bi refreshali
       if (userObj?.quote_id === quoteId) {
+        //pogleda če je user quote že v liked seznamu in če je ga odstrani
+        if (likedList.some((item) => item.quote_id === quoteId)) {
+          console.log("why is u not working");
+          setLikedList(likedList.filter((e) => e.quote_id !== quoteId));
+          //posodobimo vrednosti karma in user quote
+          const ok: User = {
+            ...userObj!,
+            quote: { ...userObj.quote, votes: response.data },
+          };
+          setUserObj(ok);
+          return;
+        }
         const ok: User = {
           ...userObj!,
           quote: { ...userObj.quote, votes: response.data },
         };
         setUserObj(ok);
-
         //v liked quotes array dodamo user qoute, če user še ni upvotu svojega quovta
         setLikedList((likedQuotes) => [...likedQuotes, ok]);
+      } else {
+        //če uporabnik upvota kar je že v liked seznamu odstranimo ta element
+        setLikedList(likedList.filter((item) => item.quote_id !== quoteId));
       }
+      //pogledamo če je user še enkrat upvotu, da quote odstranimo iz seznama
+      //setLikedList(likedList.filter((item) => item.quote_id !== quoteId));
     } catch (error: any) {
       console.log(error);
       console.log(error.response.data.message);

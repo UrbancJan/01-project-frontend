@@ -12,6 +12,7 @@ import ModalContextProvider from "./components/contexts/ModalContext";
 import PrivateRoute from "./components/PrivateRoute";
 import QuoteListContextProvider from "./components/contexts/QuoteListsContext";
 import UserDetails from "./components/UserDetails";
+import VoteArrowColorContextProvider from "./components/contexts/VoteArrowColorContext";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -39,33 +40,35 @@ function App() {
       <BrowserRouter>
         <QuoteListContextProvider>
           <ModalContextProvider>
-            <div className="main-header-container">
-              <Nav
-                isUserLoggedIn={isUserLoggedIn}
-                setIsUserLoggedIn={setIsUserLoggedIn}
-              />
-            </div>
-            <div className="main-content-container">
-              <Routes>
-                <Route
-                  path="/"
-                  element={<Home isUserLoggedIn={isUserLoggedIn} />}
+            <VoteArrowColorContextProvider>
+              <div className="main-header-container">
+                <Nav
+                  isUserLoggedIn={isUserLoggedIn}
+                  setIsUserLoggedIn={setIsUserLoggedIn}
                 />
-                <Route
-                  path="/login"
-                  element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
-                />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/test" element={<Test />} />
-                <Route element={<PrivateRoute />}>
-                  <Route path="/me" element={<Profile />} />
-                </Route>
-                <Route path="/user/:id" element={<UserDetails />} />
-              </Routes>
-            </div>
-            <div className="main-footer-container">
-              <Footer />
-            </div>
+              </div>
+              <div className="main-content-container">
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<Home isUserLoggedIn={isUserLoggedIn} />}
+                  />
+                  <Route
+                    path="/login"
+                    element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
+                  />
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/test" element={<Test />} />
+                  <Route element={<PrivateRoute />}>
+                    <Route path="/me" element={<Profile />} />
+                  </Route>
+                  <Route path="/user/:id" element={<UserDetails />} />
+                </Routes>
+              </div>
+              <div className="main-footer-container">
+                <Footer />
+              </div>
+            </VoteArrowColorContextProvider>
           </ModalContextProvider>
         </QuoteListContextProvider>
       </BrowserRouter>
