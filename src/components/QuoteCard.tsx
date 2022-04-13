@@ -1,7 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import baseurl from "../baseURL/baseurl";
-import { useVoteArrowColor } from "./contexts/VoteArrowColorContext";
 import User from "./interface/user";
 import "./QuoteCard.css";
 
@@ -11,7 +10,6 @@ const QuoteCard = (props: {
   onDownvote: (quoteId: number) => Promise<void>;
 }) => {
   const navigate = useNavigate();
-  const { upvoteArrowColor, downvoteArrowColor } = useVoteArrowColor();
   function userDetails(id: number) {
     navigate(`/user/${id}`);
   }
@@ -26,7 +24,7 @@ const QuoteCard = (props: {
               <div className="card-content">{props.userCard.quote.content}</div>
               <div
                 className="card-user"
-                onClick={() => userDetails(props.userCard.quote_id)}
+                onClick={() => userDetails(props.userCard.id)}
               >
                 {props.userCard.name} {props.userCard.lastname}
               </div>
@@ -41,8 +39,13 @@ const QuoteCard = (props: {
                   >
                     <path
                       d="M1.5 6L6.5 1L11.5 6"
-                      //stroke="#322D38"
-                      stroke={upvoteArrowColor}
+                      stroke={
+                        props.userCard.votestatus === 1
+                          ? "#DE8667"
+                          : props.userCard.votestatus === 0
+                          ? "#000000"
+                          : "#000000"
+                      }
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -60,8 +63,13 @@ const QuoteCard = (props: {
                   >
                     <path
                       d="M11.5 1L6.5 6L1.5 0.999999"
-                      //stroke="black"
-                      stroke={downvoteArrowColor}
+                      stroke={
+                        props.userCard.votestatus === 2
+                          ? "#DE8667"
+                          : props.userCard.votestatus === 0
+                          ? "#000000"
+                          : "#000000"
+                      }
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"

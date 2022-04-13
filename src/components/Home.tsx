@@ -13,13 +13,11 @@ import defaultUser from "../components/common/defaultUser.json";
 
 import { useUser } from "./contexts/UserContext";
 import { useQuoteLists } from "./contexts/QuoteListsContext";
-import { useVoteArrowColor } from "./contexts/VoteArrowColorContext";
 
 const Home = (props: { isUserLoggedIn: boolean }) => {
   const [randomQuote, setRandomQuote] = useState<User>();
   const { allList, setAllList } = useQuoteLists();
   const { setUserObj, setQuoteContent } = useUser();
-  const { setUpvoteArrowColor, setDownvoteArrowColor } = useVoteArrowColor();
 
   useEffect(() => {
     const data = async () => {
@@ -66,6 +64,7 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
   }, []);
 
   async function upvote(quoteId: number) {
+    console.log(quoteId);
     try {
       const response = await baseurl.post("/user/" + quoteId + "/upvote");
 
@@ -73,7 +72,8 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
         item.quote_id === quoteId
           ? {
               ...item,
-              quote: { ...item.quote, votes: response.data },
+              quote: { ...item.quote, votes: response.data.votes },
+              votestatus: response.data.state,
             }
           : item
       );
@@ -82,7 +82,7 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
       if (randomQuote?.quote_id === quoteId) {
         const ok: User = {
           ...randomQuote!,
-          quote: { ...randomQuote.quote, votes: response.data },
+          quote: { ...randomQuote.quote, votes: response.data.votes },
         };
         setRandomQuote(ok);
       }
@@ -100,7 +100,8 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
         item.quote_id === quoteId
           ? {
               ...item,
-              quote: { ...item.quote, votes: response.data },
+              quote: { ...item.quote, votes: response.data.votes },
+              votestatus: response.data.state,
             }
           : item
       );
@@ -110,7 +111,7 @@ const Home = (props: { isUserLoggedIn: boolean }) => {
       if (randomQuote?.quote_id === quoteId) {
         const ok: User = {
           ...randomQuote!,
-          quote: { ...randomQuote.quote, votes: response.data },
+          quote: { ...randomQuote.quote, votes: response.data.votes },
         };
         setRandomQuote(ok);
       }

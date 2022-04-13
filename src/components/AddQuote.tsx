@@ -23,7 +23,7 @@ const AddQuote = () => {
       setQuoteContent(response.data.quote.content);
 
       //posodobimo vrednost v all listu (home page)
-      const allListItems = allList.map((item) =>
+      /*const allListItems = allList.map((item) =>
         item.quote_id === response.data.quote_id
           ? {
               ...item,
@@ -32,6 +32,20 @@ const AddQuote = () => {
           : item
       );
       setAllList(allListItems);
+      */
+      //pogledamo če je vrednost že v alllistu(home page)
+      const i = allList.findIndex(
+        (element) => element.quote_id === response.data.quote_id
+      );
+      //če vrednost obstaja jo posodobimo
+      if (i > -1) {
+        allList[i].quote.content = response.data.quote.content;
+        //drugače vstavimo novo vrednost
+      } else {
+        allList.push(response.data);
+      }
+      //posodobimo all list
+      setAllList(allList);
 
       //posodobimo vrednost userja
       setUserObj(response.data);

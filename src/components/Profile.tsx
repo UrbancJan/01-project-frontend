@@ -23,10 +23,8 @@ const Profile = () => {
         if (response) {
           setUserObj(response.data);
           setQuoteContent(response.data.quote.content);
-          console.log(response.data);
           //pridobimo še uporabnikove liked quotes
           try {
-            console.log(userObj);
             const responseLikes = await baseurl.get(
               "/liked/" + response.data.id
             );
@@ -51,19 +49,20 @@ const Profile = () => {
       if (userObj?.quote_id === quoteId) {
         //pogleda če je user quote že v liked seznamu in če je ga odstrani
         if (likedList.some((item) => item.quote_id === quoteId)) {
-          console.log("why is u not working");
           setLikedList(likedList.filter((e) => e.quote_id !== quoteId));
           //posodobimo vrednosti karma in user quote
           const ok: User = {
             ...userObj!,
-            quote: { ...userObj.quote, votes: response.data },
+            quote: { ...userObj.quote, votes: response.data.votes },
+            votestatus: response.data.state,
           };
           setUserObj(ok);
           return;
         }
         const ok: User = {
           ...userObj!,
-          quote: { ...userObj.quote, votes: response.data },
+          quote: { ...userObj.quote, votes: response.data.votes },
+          votestatus: response.data.state,
         };
         setUserObj(ok);
         //v liked quotes array dodamo user qoute, če user še ni upvotu svojega quovta
@@ -89,7 +88,8 @@ const Profile = () => {
       if (userObj?.quote_id === quoteId) {
         const ok: User = {
           ...userObj!,
-          quote: { ...userObj.quote, votes: response.data },
+          quote: { ...userObj.quote, votes: response.data.votes },
+          votestatus: response.data.state,
         };
         setUserObj(ok);
       }

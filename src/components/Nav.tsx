@@ -6,14 +6,15 @@ import { ReactComponent as TopNavCover } from "../assets/ProfileSvg.svg";
 import AddQuote from "./AddQuote";
 import { useModal } from "./contexts/ModalContext";
 import Settings from "./Settings";
+import { useUser } from "./contexts/UserContext";
 
 const Nav = (props: {
   isUserLoggedIn: boolean;
   setIsUserLoggedIn: (status: boolean) => void;
 }) => {
   const [showMobile, setMobile] = useState(false);
-  //const [showAddQuote, setShowAddQuote] = useState(false);
   const { addQuote, setAddQuote, addProfile, setAddProfile } = useModal();
+  const { setQuoteContent } = useUser();
 
   function showMobileMenu() {
     if (showMobile == false) {
@@ -29,6 +30,7 @@ const Nav = (props: {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
+    setQuoteContent("");
     props.setIsUserLoggedIn(false);
   };
 
