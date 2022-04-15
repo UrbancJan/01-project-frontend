@@ -10,6 +10,8 @@ const Settings = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const { userObj } = useUser();
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const { addProfile, setAddProfile } = useModal();
 
@@ -17,27 +19,56 @@ const Settings = () => {
     if (addProfile == false) {
       setAddProfile(true);
     } else {
+      //če kliknemo cancel se pobrišejo input fieldi
+      setNewPassword("");
+      setConfirmNewPassword("");
+      setPasswordError("");
+      setConfirmPasswordError("");
       setAddProfile(false);
     }
   }
 
+  const validate = () => {
+    if (newPassword === "") {
+      setPasswordError("password can not be empty");
+    }
+    if (confirmNewPassword === "") {
+      setConfirmPasswordError("confirm password can not be empty");
+    }
+    if (newPassword !== confirmNewPassword) {
+      setConfirmPasswordError("passwords must be the same");
+    }
+    if (passwordError || confirmPasswordError) {
+      return false;
+    }
+    return true;
+  };
+
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const newPasswordObject = JSON.stringify({
-      password: newPassword,
-      confirmPassword: confirmNewPassword,
-    });
+    const isValid = validate();
+    if (isValid === true) {
+      const newPasswordObject = JSON.stringify({
+        password: newPassword,
+        confirmPassword: confirmNewPassword,
+      });
 
-    try {
-      const response = await baseurl.put(
-        "/me/update-password",
-        newPasswordObject
-      );
-      console.log(response.data);
-    } catch (error: any) {
-      console.log(error.response);
+      try {
+        const response = await baseurl.put(
+          "/me/update-password",
+          newPasswordObject
+        );
+
+        setPasswordError("");
+        setConfirmPasswordError("");
+      } catch (error: any) {
+        console.log(error.response);
+      }
+    } else {
     }
+    setNewPassword("");
+    setConfirmNewPassword("");
   };
   return (
     <>
@@ -89,20 +120,22 @@ const Settings = () => {
               <input
                 type="password"
                 name="password"
-                placeholder="example@net.com"
                 className="input"
+                value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
+              <div style={{ color: "red" }}>{passwordError}</div>
             </div>
             <div className="passwordItem2">
               <label>Confirm Password</label>
               <input
                 type="password"
                 name="password"
-                placeholder="example@net.com"
                 className="input"
+                value={confirmNewPassword}
                 onChange={(e) => setConfirmNewPassword(e.target.value)}
               />
+              <div style={{ color: "red" }}>{confirmPasswordError}</div>
             </div>
           </div>
           <div className="settingButtonsContainer">

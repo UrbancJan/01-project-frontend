@@ -134,7 +134,6 @@ const SignUp = () => {
             <input
               type="password"
               name="password"
-              placeholder="example@net.com"
               className="input"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -145,7 +144,6 @@ const SignUp = () => {
             <input
               type="password"
               name="password"
-              placeholder="example@net.com"
               className="input"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
